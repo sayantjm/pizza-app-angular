@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-10">
+    <h1>{{ pizza.name }}</h1>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-4">
+    <img [src]="pizza.imagePath" alt="{{ pizza.name }}" class="img-responsive" style="max-height: 300px">
+  </div>
+  <div class="col-xs-4">
+    <h2>Ingredients</h2>
+    <ul class="list-group">
+      <a class="list-group-item" style="cursor: pointer" *ngFor="let ingredient of pizza.ingredients">{{ ingredient.name }} - ({{ ingredient.price }} €)</a>
+    </ul>
+    <h3>Total Prize: {{totalPrize}} €</h3>
+    <hr>
+    <button class="btn btn-danger" type="button" (click)="onDeletePizza()">Delete</button>
+    <button class="btn btn-primary" type="button" (click)="onEditPizza()">Edit</button>
+  </div>
+</div>
+<hr>
+<div class="row">
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-10">
+    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
+      <div class="row">
+        <div class="col-sm-5 form-group">
+          <label for="comment">Comment</label>
+          <input type="text" id="comment" class="form-control" name="comment" ngModel required>
+        </div>
+        <div class="col-sm-2 form-group">
+          <label for="points">Points</label>
+          <input type="number" id="points" class="form-control" name="points" ngModel required pattern="[0-5]*$">
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-xs-12">
+          <button class="btn btn-success" type="submit" [disabled]="!f.valid">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<div class="row">
+  <div class="col-xs-1">
+  </div>
+  <div class="col-xs-10">
+    <h2>Comments</h2>
+    <div class="list-group">
+      <a href="#" class="list-group-item clearfix" *ngFor="let comment of pizza.comments">
+        <h5 class="mb-1">{{ comment.userName}}</h5>
+        <span class="pull-right">
+          <small>{{ comment.date}} <h6 class="mb-1">{{ comment.points}} points</h6></small>
+        </span>
+        <p>{{ comment.text }}</p>
+      </a>
+    </div>
+  </div>
+</div>
