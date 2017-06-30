@@ -34,8 +34,7 @@
         <div class="col-xs-12" formArrayName="ingredients">
           <div
             class="row"
-            let formGroup_controls = formGroup.get('ingredients').controls;
-            *ngFor="let option of formGroup_controls; let i=index;"
+            *ngFor="let ingredientCtrl of pizzaForm.get('ingredients').controls.formArray.controls; let i = index"
             [formGroupName]="i"
             style="margin-top: 10px;">
             <div class="col-xs-8">
