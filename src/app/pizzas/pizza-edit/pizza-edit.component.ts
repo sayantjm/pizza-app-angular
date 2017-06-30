@@ -36,7 +36,7 @@ export class PizzaEditComponent implements OnInit {
 
   onSubmit() {
     const newPizza = new Pizza(
-                          this.pizzaForm.value['name'], 
+                          this.pizzaForm.value['name'],
                           this.pizzaForm.value['imagePath'],
                           this.pizzaForm.value['ingredients'], null);
     if (this.editMode) {
