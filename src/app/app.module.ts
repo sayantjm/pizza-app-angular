@@ -11,8 +11,11 @@ import { PizzaListComponent } from './pizzas/pizza-list/pizza-list.component';
 import { PizzaDetailComponent } from './pizzas/pizza-detail/pizza-detail.component';
 import { PizzaService } from './pizzas/pizza.service';
 import { DataStorageService } from './shared/data-storage.service';
+import { AuthService } from './auth/auth.service';
 import { AppRoutingModule } from './app.routing.module';
 import { PizzaEditComponent } from './pizzas/pizza-edit/pizza-edit.component';
+import { LoginComponent } from './auth/login/login.component';
+import { LogoutComponent } from './auth/logout/logout.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +24,9 @@ import { PizzaEditComponent } from './pizzas/pizza-edit/pizza-edit.component';
     PizzasComponent,
     PizzaListComponent,
     PizzaDetailComponent,
-    PizzaEditComponent
+    PizzaEditComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +35,7 @@ import { PizzaEditComponent } from './pizzas/pizza-edit/pizza-edit.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [PizzaService, DataStorageService],
+  providers: [PizzaService, DataStorageService, AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
