@@ -17,7 +17,7 @@ export class PizzaEditComponent implements OnInit {
   editMode = false;
   pizzaForm: FormGroup;
 
-  get ingredients() { return this.pizzaForm.get('ingredients'); }
+  get ingredients() { return <FormArray>this.pizzaForm.get('ingredients'); }
 
   constructor(private route: ActivatedRoute,
               private pizzaService: PizzaService,
