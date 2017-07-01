@@ -6,6 +6,7 @@ import { Response } from '@angular/http';
 import { PizzaService } from '../pizza.service';
 import { DataStorageService } from '../../shared/data-storage.service';
 import { Pizza } from '../pizza.model';
+import { Ingredient } from '../../shared/ingredient.model';
 
 @Component({
   selector: 'app-pizza-edit',
@@ -16,8 +17,11 @@ export class PizzaEditComponent implements OnInit {
   id: number;
   editMode = false;
   pizzaForm: FormGroup;
+  public fromIngredients: FormArray;
 
-  get ingredients() { return <FormArray>this.pizzaForm.get('ingredients'); }
+  get ingredients(): FormArray {
+  return this.pizzaForm.get('ingredients') as FormArray;
+};
 
   constructor(private route: ActivatedRoute,
               private pizzaService: PizzaService,
@@ -99,6 +103,7 @@ export class PizzaEditComponent implements OnInit {
         }
       }
     }
+
 
     this.pizzaForm = new FormGroup({
       'name': new FormControl(pizzaName, Validators.required),
