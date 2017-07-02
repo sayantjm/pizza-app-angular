@@ -6,6 +6,7 @@ import { Subject } from 'rxjs/Subject';
 
 export class PizzaService {
     pizzasChanged = new Subject<Pizza[]>();
+    private comments: Comment[] = [];
 
     private pizzas: Pizza[] = [
         new Pizza('4 Cheese Pizza', 'http://www.jackspizza.com/media/1039/cheese.jpg',
@@ -92,5 +93,15 @@ export class PizzaService {
     setPizzas(pizzas: Pizza[]) {
         this.pizzas = pizzas;
         this.pizzasChanged.next(this.pizzas.slice());
+    }
+
+    getComments(index: number) {
+        let selectPizza = this.pizzas[index];
+        if (selectPizza['comments']) {
+            this.comments = this.pizzas[index].comments;
+        } else {
+            this.comments = null;
+        }
+        return this.comments;
     }
 }

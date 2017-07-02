@@ -10,6 +10,7 @@ import { DataStorageService } from '../../shared/data-storage.service';
   templateUrl: './pizza-list.component.html',
   styleUrls: ['./pizza-list.component.css']
 })
+
 export class PizzaListComponent implements OnInit, OnDestroy {
   pizzas: Pizza[];
   subscription: Subscription;
@@ -17,7 +18,6 @@ export class PizzaListComponent implements OnInit, OnDestroy {
   constructor(private pizzaService: PizzaService, private dataStorageService: DataStorageService) { }
 
   ngOnInit() {
-    this.dataStorageService.getPizzas();
     this.subscription = this.pizzaService.pizzasChanged
       .subscribe(
         (pizzas: Pizza[]) => {

@@ -16,6 +16,10 @@ import { AppRoutingModule } from './app.routing.module';
 import { PizzaEditComponent } from './pizzas/pizza-edit/pizza-edit.component';
 import { LoginComponent } from './auth/login/login.component';
 import { LogoutComponent } from './auth/logout/logout.component';
+import { RegisterComponent } from './auth/register/register.component';
+import { DropdownDirective } from './shared/dropdown.directive';
+import { AuthGuard } from './auth/auth-guard.service';
+
 
 @NgModule({
   declarations: [
@@ -26,7 +30,9 @@ import { LogoutComponent } from './auth/logout/logout.component';
     PizzaDetailComponent,
     PizzaEditComponent,
     LoginComponent,
-    LogoutComponent
+    LogoutComponent,
+    RegisterComponent,
+    DropdownDirective
   ],
   imports: [
     BrowserModule,
@@ -35,7 +41,7 @@ import { LogoutComponent } from './auth/logout/logout.component';
     HttpModule,
     AppRoutingModule
   ],
-  providers: [PizzaService, DataStorageService, AuthService],
+  providers: [PizzaService, DataStorageService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

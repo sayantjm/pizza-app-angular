@@ -57,6 +57,13 @@ export class PizzaDetailComponent implements OnInit {
     const newComment = new Comment('username', value.points, value.comment, new Date());
     this.pizzaService.addComment(this.id, newComment);
 
+    this.dataStorageService.storePizzas()
+      .subscribe(
+        (response: Response) => {
+          console.log(response);
+        }
+      );
+
     form.reset();
   }
 }

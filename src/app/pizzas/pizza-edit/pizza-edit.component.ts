@@ -4,7 +4,6 @@ import { FormGroup, FormControl, FormArray, Validators } from '@angular/forms';
 import { Response } from '@angular/http';
 
 import { PizzaService } from '../pizza.service';
-import { DataStorageService } from '../../shared/data-storage.service';
 import { Pizza } from '../pizza.model';
 import { Ingredient } from '../../shared/ingredient.model';
 
@@ -13,20 +12,19 @@ import { Ingredient } from '../../shared/ingredient.model';
   templateUrl: './pizza-edit.component.html',
   styleUrls: ['./pizza-edit.component.css']
 })
+
 export class PizzaEditComponent implements OnInit {
   id: number;
   editMode = false;
   pizzaForm: FormGroup;
-  public fromIngredients: FormArray;
 
   get ingredients(): FormArray {
-  return this.pizzaForm.get('ingredients') as FormArray;
-};
+    return this.pizzaForm.get('ingredients') as FormArray;
+  };
 
   constructor(private route: ActivatedRoute,
               private pizzaService: PizzaService,
-              private router: Router,
-              private dataStorageService: DataStorageService ) { }
+              private router: Router) { }
 
   ngOnInit() {
     this.route.params
@@ -35,27 +33,23 @@ export class PizzaEditComponent implements OnInit {
         this.id = +params['id'];
         this.editMode = params['id'] != null;
         this.initForm();
-        console.log(this.editMode);
       }
     );
   }
 
-  onSubmit() {
+  onSubmit() {    
     const newPizza = new Pizza(
                           this.pizzaForm.value['name'],
                           this.pizzaForm.value['imagePath'],
-                          this.pizzaForm.value['ingredients'], null);
+                          this.pizzaForm.value['ingredients'],
+                          this.pizzaForm.value['comments']
+                          //this.pizzaService.getComments(this.id)
+                          );
     if (this.editMode) {
       this.pizzaService.updatePizza(this.id, newPizza);
     } else {
       this.pizzaService.addPizza(newPizza);
     }
-    this.dataStorageService.storePizzas()
-      .subscribe(
-        (response: Response) => {
-          console.log(response);
-        }
-      );
 
     this.onCancel();
   }
