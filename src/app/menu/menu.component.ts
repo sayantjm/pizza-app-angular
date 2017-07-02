@@ -13,7 +13,7 @@ import { AuthService } from '../auth/auth.service';
 export class MenuComponent {
 
   constructor(private dataStorageService: DataStorageService,
-              private authService: AuthService) {
+              public authService: AuthService) {
   }
 
   onSaveData() {
